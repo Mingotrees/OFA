@@ -30,6 +30,49 @@ Markdown and math in explanations are rendered in HTML using:
 - rehype-katex
 - katex
 
+## Pre-generate AI Explanations
+
+You can pre-generate explanation blocks directly into the markdown files under philnits-vault so the app serves them as static content.
+
+1. Set your API key in the current shell
+
+```powershell
+$env:OPENAI_API_KEY="your_api_key_here"
+```
+
+2. Optional: choose model/base URL
+
+```powershell
+$env:OPENAI_MODEL="gpt-4o-mini"
+# Optional for compatible gateways/proxies:
+# $env:OPENAI_BASE_URL="https://api.openai.com/v1"
+```
+
+3. Preview what would be changed (no file writes)
+
+```bash
+npm run gen:explanations:dry
+```
+
+4. Generate and write explanations
+
+```bash
+npm run gen:explanations
+```
+
+Useful options:
+
+- Only process files containing a path fragment: `npm run gen:explanations -- --match 2024/`
+- Limit batch size: `npm run gen:explanations -- --limit 25`
+- Regenerate files that already have explanation blocks: `npm run gen:explanations -- --overwrite`
+- Parallel requests: `npm run gen:explanations -- --concurrency 3`
+
+Notes:
+
+- The script preserves your existing markdown format and inserts a `### AI Explanation` block after the answer line.
+- By default, files with existing explanation text are skipped.
+- Commit generated changes after review.
+
 ## Main Routes
 
 - / : Home page

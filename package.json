@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:explanations": "node scripts/generate-explanations.mjs",
+    "gen:explanations:dry": "node scripts/generate-explanations.mjs --dry-run"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
